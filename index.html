@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Data Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .row .form-group {
+            flex: 1 1 calc(33% - 10px);
+            margin-right: 10px;
+        }
+        .row .form-group:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Client Data Form</h2>
+        <form id="clientForm">
+            <div class="form-group row">
+                <label for="client-name">Client Name:</label>
+                <input type="text" id="client-name" name="clientName" required>
+                <label for="client-id">Client ID:</label>
+                <input type="text" id="client-id" name="clientId">
+            </div>
+            <div class="form-group row">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="lastName" required>
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="firstName" required>
+                <label for="middle-name">Middle Name:</label>
+                <input type="text" id="middle-name" name="middleName">
+            </div>
+            <div class="form-group row">
+                <label for="aka-last-name">AKA or Maiden Last Name:</label>
+                <input type="text" id="aka-last-name" name="akaLastName">
+                <label for="aka-first-name">First Name:</label>
+                <input type="text" id="aka-first-name" name="akaFirstName">
+                <label for="aka-middle-name">Middle Name:</label>
+                <input type="text" id="aka-middle-name" name="akaMiddleName">
+            </div>
+            <div class="form-group row">
+                <label for="sex">Sex:</label>
+                <input type="text" id="sex" name="sex">
+                <label for="ethnicity">Ethnicity:</label>
+                <input type="text" id="ethnicity" name="ethnicity">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+            <div class="form-group row">
+                <label for="estimated-age">Estimated Age:</label>
+                <input type="text" id="estimated-age" name="estimatedAge">
+                <label for="ssn">Social Security #:</label>
+                <input type="text" id="ssn" name="ssn">
+                <label for="mothers-maiden-name">Mother's Maiden Name:</label>
+                <input type="text" id="mothers-maiden-name" name="mothersMaidenName">
+            </div>
+            <!-- Add additional fields based on the PDF here -->
+            <div class="form-group row">
+                <label for="address">Client Address/House # and Direction:</label>
+                <input type="text" id="address" name="address">
+                <label for="street-name">Street Name:</label>
+                <input type="text" id="street-name" name="streetName">
+                <label for="street-type">Street Type:</label>
+                <input type="text" id="street-type" name="streetType">
+            </div>
+            <div class="form-group row">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state">
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" name="zip">
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('clientForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch('https://example.com/form-submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Form submitted successfully!');
+                event.target.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
+            });
+        });
+    </script>
+</body>
+</html>
