@@ -1,0 +1,51 @@
+import { sendClientDataSheetEmail } from 'backend/email';
+
+$w.onReady(function () {
+  // Add an event listener to the form submission
+  $w('#clientDataSheetForm').onSubmit(async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = {
+      lastName: $w('#last-name').value,
+      firstName: $w('#first-name').value,
+      middleName: $w('#middle-name').value,
+      email: $w('#email').value, // Add email field
+      gender: $w('#gender').value,
+      ethnicity: $w('#ethnicity').value,
+      dob: $w('#dob').value,
+      age: $w('#age').value,
+      address: $w('#address').value,
+      streetName: $w('#street-name').value,
+      streetType: $w('#street-type').value,
+      city: $w('#city').value,
+      state: $w('#state').value,
+      zip: $w('#zip').value,
+      county: $w('#county').value,
+      areaCode: $w('#area-code').value,
+      phoneNumber: $w('#phone-number').value,
+      primaryLanguage: $w('#primary-language').value,
+      englishSpeaking: $w('#english-speaking').value,
+      relationshipStatus: $w('#relationship-status').value,
+      raceEthnicity: $w('#race-ethnicity').value,
+      healthInsurance: $w('#health-insurance').value,
+      insuranceId: $w('#insurance-id').value,
+      insuranceTelephone: $w('#insurance-telephone').value,
+      emergencyContactName: $w('#emergency-contact-name').value,
+      emergencyContactRelationship: $w('#emergency-contact-relationship').value,
+      emergencyContactPhone: $w('#emergency-contact-phone').value,
+    };
+
+    console.log('Form data:', formData); // Log form data to check
+
+    try {
+      await sendClientDataSheetEmail(formData); // Call the backend function
+      $w('#successMessage').show();
+      $w('#errorMessage').hide();
+      console.log('Form submitted successfully.');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      $w('#errorMessage').show();
+      $w('#successMessage').hide();
+    }
+  });
+});
