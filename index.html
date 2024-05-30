@@ -55,7 +55,7 @@
 <body>
     <div class="container">
         <h2>Client Data Form</h2>
-        <form id="clientForm">
+        <form id="clientDataSheetForm">
             <div class="form-group">
                 <label for="client-name">Client Name:</label>
             </div>
@@ -66,6 +66,10 @@
                 <input type="text" id="first-name" name="firstName" required>
                 <label for="middle-name">Middle Name:</label>
                 <input type="text" id="middle-name" name="middleName">
+            </div>
+            <div class="form-group row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group row">
                 <label for="gender">Gender:</label>
@@ -145,31 +149,10 @@
                 <button type="submit">Submit</button>
             </div>
         </form>
+
+        <div id="successMessage" style="display:none;">Your message has been sent successfully!</div>
+        <div id="errorMessage" style="display:none;">There was an error sending your message. Please try again.</div>
     </div>
-    <script>
-        document.getElementById('clientForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-
-            fetch('https://example.com/form-submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Form submitted successfully!');
-                event.target.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while submitting the form.');
-            });
-        });
-    </script>
 </body>
 </html>
+
