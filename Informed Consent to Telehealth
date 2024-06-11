@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telehealth Consent Form</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .success-message {
+            color: green;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Informed Consent to Telehealth</h1>
+
+    <!-- Success message -->
+    <div id="successMessage" class="success-message hidden">
+        Thank you for submitting the form. Your submission has been received.
+    </div>
+
+    <form action="https://formspree.io/f/xknddoap?success=true" method="POST">
+        <p>Telehealth allows my therapist to diagnose, consult, treat, and educate using interactive audio, video, or other telecommunications technology.</p>
+        
+        <label for="therapistName">Therapist Name:</label>
+        <input type="text" id="therapistName" name="therapistName" required><br><br>
+
+        <label for="clientName">Client Name:</label>
+        <input type="text" id="clientName" name="clientName" required><br><br>
+
+        <p>I understand I have the following rights under this agreement:</p>
+        
+        <p>I have a right to confidentiality with Telehealth under the same laws that protect the confidentiality of my medical information for in-person psychotherapy. Any information disclosed by me during the course of my therapy, therefore, is generally confidential. Additionally, I understand that I must make all attempts to secure a confidential, quiet space that is free of distractions utilizing a secure Internet connection. Further, I understand that the dissemination of any personally identifiable images or information from the Telehealth interaction to any other entities shall not occur without my written consent.</p>
+        
+        <p>There are, by law, exceptions to confidentiality, including mandatory reporting of child, elder, and dependent adult abuse, and any threats of violence I may make towards a reasonably identifiable person.</p>
+        
+        <p>I also understand that if I am in such mental or emotional condition to be a danger to others, or myself, my therapist has the right to break confidentiality to prevent the threatened danger. I understand that if I am in need of emergency mental health services, I may contact my local emergency room at:</p>
+
+        <label for="emergencyRoom">Emergency Room:</label>
+        <input type="text" id="emergencyRoom" name="emergencyRoom" required><br><br>
+
+        <p>I understand that while psychotherapeutic treatment of all kinds has been found to be effective in treating a wide range of mental disorders, personal and relational issues, there is no guarantee that all treatment of all clients will be effective. Thus, I understand that while I may benefit from Telehealth, results cannot be guaranteed or assured.</p>
+        
+        <p>I further understand that there are risks unique and specific to Telehealth, including but not limited to, the possibility that our therapy sessions could be disrupted or distorted by technical failures or could be interrupted or could be accessed by unauthorized persons. In addition, I understand that Telehealth treatment is different from in-person therapy and that if my therapist believes I would be better served by another form of psychotherapeutic services, such as in-person treatment, I will be referred to a therapist in my geographic area that can provide such services.</p>
+        
+        <p>I have read and understand the information provided above. I have the right to discuss any of this information with my therapist and to have any questions I may have regarding my treatment answered to my satisfaction.</p>
+        
+        <p>I understand that I can withdraw my consent to Telehealth communications by providing written notification to Prepare to Change. My signature below indicates that I have read this agreement and agree to its terms.</p>
+
+        <label for="signature">Client's Authorized Signature:</label>
+        <input type="text" id="signature" name="signature" style="font-family: cursive;" required><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Check if the URL contains the success parameter
+        if (window.location.search.includes('success=true')) {
+            document.getElementById('successMessage').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
